@@ -1,10 +1,38 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Task from "./components/Task.vue";
+import Task from "./components/Task/Task.vue";
 
 const tasks = ref([
-  { id: 1, title: "Kup mleko", completed: false },
-  { id: 2, title: "Zrób ćwiczenia", completed: true },
+  {
+    id: 1,
+    title: "Christmas Shopping",
+    timeSlots: {
+      startDate: "2025-03-30T14:00:00",
+      endDate: "2025-04-05T17:00:00",
+    },
+    shoppingList: {
+      totalItems: 4,
+      completedItems: 0,
+      items: [
+        {
+          name: "Margherita Pizza",
+          completed: false,
+        },
+        {
+          name: "Peanut Butter",
+          completed: false,
+        },
+        {
+          name: "Burrata",
+          completed: false,
+        },
+        {
+          name: "Cinnamon Rolls",
+          completed: false,
+        },
+      ],
+    },
+  },
 ]);
 </script>
 
