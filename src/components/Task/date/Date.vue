@@ -26,7 +26,7 @@ const formattedDate = computed(() =>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .date-time {
   display: flex;
   gap: 2px;

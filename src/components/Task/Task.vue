@@ -23,7 +23,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .task-container {
   width: 400px;
   height: 300px;
@@ -33,17 +33,17 @@ defineProps<{
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-.task-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.task-title {
-  font-weight: 600;
-}
-.task-dates {
-  display: flex;
-  gap: 12px;
+  .task-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .task-title {
+      font-weight: 600;
+    }
+  }
+  .task-dates {
+    display: flex;
+    gap: 12px;
+  }
 }
 </style>

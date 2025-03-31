@@ -44,7 +44,7 @@ const tasks = ref([
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .tasks {
   display: flex;
   gap: 5px;

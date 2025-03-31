@@ -34,7 +34,7 @@ const timeLeft = computed(() => calculateTimeLeft());
   <div class="time-left text-grey">{{ timeLeft }} left</div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .time-left {
   background: #f7f7f7;
   padding: 6px 12px;
