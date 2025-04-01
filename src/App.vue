@@ -10,28 +10,24 @@ const tasks = ref([
       startDate: "2025-03-30T14:00:00",
       endDate: "2025-04-05T17:00:00",
     },
-    shoppingList: {
-      totalItems: 4,
-      completedItems: 0,
-      items: [
-        {
-          name: "Margherita Pizza",
-          completed: false,
-        },
-        {
-          name: "Peanut Butter",
-          completed: false,
-        },
-        {
-          name: "Burrata",
-          completed: false,
-        },
-        {
-          name: "Cinnamon Rolls",
-          completed: false,
-        },
-      ],
-    },
+    subtasks: [
+      {
+        name: "Margherita Pizza",
+        completed: false,
+      },
+      {
+        name: "Peanut Butter",
+        completed: false,
+      },
+      {
+        name: "Burrata",
+        completed: false,
+      },
+      {
+        name: "Cinnamon Rolls",
+        completed: false,
+      },
+    ],
   },
 ]);
 </script>

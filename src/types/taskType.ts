@@ -1,10 +1,6 @@
-type ShoppingList = {
-  totalItems: number;
-  completedItems: number;
-  items: {
-    name: string;
-    completed: boolean;
-  }[];
+type SubtaskType = {
+  name: string;
+  completed: boolean;
 };
 
 type TaskProps = {
@@ -13,6 +9,6 @@ type TaskProps = {
     startDate: string;
     endDate: string;
   };
-  shoppingList: ShoppingList;
+  subtasks: SubtaskType[];
 };
-export type { TaskProps };
+export type { TaskProps, SubtaskType };
