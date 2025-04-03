@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ArrowRight from "../../icons/arrowRight.vue";
-import type { TaskProps } from "../../types/taskType";
+import LineBreak from "../../../components/ui/LineBreak.vue";
+import type { TaskProps } from "../../../types/taskType";
 import Date from "./date/Date.vue";
 import Subtask from "./subtask/Subtask.vue";
 import TimeLeft from "./timeLeft/timeLeft.vue";
@@ -11,18 +11,18 @@ defineProps<{
 </script>
 
 <template>
-  <div class="task-container">
-    <div class="task-info">
-      <header class="task-title">{{ task.title }}</header>
+  <div class="task">
+    <div class="task__info">
+      <header class="task__title">{{ task.title }}</header>
       <TimeLeft :end-date="task.timeSlots.endDate" />
     </div>
-    <div class="task-dates">
+    <div class="task__dates">
       <Date :date="task.timeSlots.startDate" />
       <ArrowRight />
       <Date :date="task.timeSlots.endDate" />
     </div>
-    <div class="line-break" />
-    <div class="subtasks">
+    <LineBreak />
+    <div class="task__subtasks">
       <div v-for="subtask in task.subtasks">
         <Subtask :sub-task="subtask" />
       </div>
@@ -31,30 +31,30 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.task-container {
-  background-color: white;
+.task {
+  background-color: rgb(31, 31, 31);
   border-radius: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  .task-info {
+
+  &__info {
     display: flex;
     align-items: center;
     gap: 20px;
-    .task-title {
-      font-weight: 600;
-    }
   }
-  .task-dates {
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__dates {
     display: flex;
     gap: 12px;
   }
-  .line-break {
-    background-color: rgb(216, 216, 216);
-    height: 1px;
-  }
-  .subtasks {
+
+  &__subtasks {
     display: flex;
     flex-direction: column;
     gap: 5px;
