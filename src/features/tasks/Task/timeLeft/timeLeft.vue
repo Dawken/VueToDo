@@ -14,15 +14,15 @@ const calculateTimeLeft = () => {
   const minutes = Math.floor(totalSeconds / 60);
 
   if (days > 0) {
-    return `${days}d`;
+    return `${days}d left`;
   }
 
   if (hours > 0) {
-    return `${hours}h`;
+    return `${hours}h left`;
   }
 
   if (minutes > 0) {
-    return `${minutes}m`;
+    return `${minutes}m left`;
   }
 
   return "Czas minął!";
@@ -31,12 +31,13 @@ const calculateTimeLeft = () => {
 const timeLeft = computed(() => calculateTimeLeft());
 </script>
 <template>
-  <div class="time-left text-grey">{{ timeLeft }} left</div>
+  <div class="time-left">{{ timeLeft }}</div>
 </template>
 
 <style lang="scss" scoped>
 .time-left {
   background: #f7f7f7;
+  color: $light-grey;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 14px;

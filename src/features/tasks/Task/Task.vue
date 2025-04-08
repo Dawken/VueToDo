@@ -1,13 +1,23 @@
 <script setup lang="ts">
+import ArrowRight from "../../../components/icons/arrowRight.vue";
 import LineBreak from "../../../components/ui/LineBreak.vue";
 import type { TaskProps } from "../../../types/taskType";
 import Date from "./date/Date.vue";
 import Subtask from "./subtask/Subtask.vue";
+import TaskInput from "./taskInput/TaskInput.vue";
 import TimeLeft from "./timeLeft/timeLeft.vue";
 
-defineProps<{
+const emit = defineEmits<{
+  (e: "add-subtask", taskId: number, name: string): void;
+}>();
+
+const props = defineProps<{
   task: TaskProps;
 }>();
+
+const handleAddSubtask = (name: string) => {
+  emit("add-subtask", props.task.id, name);
+};
 </script>
 
 <template>
@@ -27,6 +37,7 @@ defineProps<{
         <Subtask :sub-task="subtask" />
       </div>
     </div>
+    <TaskInput @add-subtask="handleAddSubtask" />
   </div>
 </template>
 

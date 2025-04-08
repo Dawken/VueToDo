@@ -16,10 +16,11 @@ defineProps<{
 
 <style lang="scss" scoped>
 .subtask {
-  background-color: #1a1a1a;
+  background-color: $grey;
   padding: 12px;
   border-radius: 12px;
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 </style>

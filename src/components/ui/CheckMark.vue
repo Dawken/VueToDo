@@ -3,16 +3,16 @@
 <template>
   <label class="checkbox">
     <input type="checkbox" class="checkbox__input" />
-    <span class="checkbox__checkmark"></span>
+    <span class="checkbox__box"></span>
   </label>
 </template>
 
 <style lang="scss" scoped>
 .checkbox {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   position: relative;
   cursor: pointer;
-  font-size: 18px;
   user-select: none;
 
   &__input {
@@ -20,41 +20,26 @@
     opacity: 0;
     cursor: pointer;
 
-    &:checked ~ .checkbox__checkmark {
-      color: black;
-
-      &::after {
-        display: block;
-      }
+    &:checked ~ .checkbox__box {
+      background-color: #6c63ff;
+      border-color: #6c63ff;
     }
 
-    &:disabled ~ .checkbox__checkmark {
+    &:disabled ~ .checkbox__box {
       background-color: #ddd;
+      border-color: #aaa;
       cursor: not-allowed;
     }
   }
 
-  &__checkmark {
+  &__box {
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: #eee;
-    border: 2px solid #ccc;
+    background-color: transparent;
+    border: 2px solid #202020;
     border-radius: 4px;
-    transition: all 0.2s ease;
-
-    &::after {
-      content: "";
-      position: absolute;
-      display: none;
-      left: 5px;
-      top: 6px;
-      width: 2px;
-      height: 5px;
-      border: solid rgb(199, 199, 199);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
+    transition: background-color 0.2s, border-color 0.2s;
   }
 }
 </style>

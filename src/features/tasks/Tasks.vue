@@ -30,12 +30,19 @@ const tasks = ref([
     ],
   },
 ]);
+
+const addSubtask = (taskId: number, name: string) => {
+  const task = tasks.value.find((task) => task.id === taskId);
+  if (task) {
+    task.subtasks.push({ name, completed: false });
+  }
+};
 </script>
 
 <template>
   <div class="tasks">
     <div v-for="task in tasks" :key="task.id">
-      <Task :task="task" />
+      <Task :task="task" @add-subtask="addSubtask" />
     </div>
   </div>
 </template>
