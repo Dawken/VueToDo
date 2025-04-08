@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import CheckMark from "../../../../components/ui/CheckMark.vue";
+import { defineProps, defineEmits } from "vue";
 import type { SubtaskType } from "../../../../types/taskType";
+import CheckMark from "../../../../components/ui/CheckMark.vue";
 
-defineProps<{
+const emit = defineEmits<{
+  (e: "toggle-subtask", id: number): void;
+}>();
+
+const props = defineProps<{
   subTask: SubtaskType;
 }>();
+
+const handleToggle = () => {
+  emit("toggle-subtask", props.subTask.id);
+};
 </script>
 
 <template>
   <div class="subtask">
-    <CheckMark />
+    <CheckMark @check-toggled="handleToggle" :completed="subTask.completed" />
     <span>{{ subTask.name }}</span>
   </div>
 </template>
@@ -17,7 +26,7 @@ defineProps<{
 <style lang="scss" scoped>
 .subtask {
   background-color: $grey;
-  padding: 12px;
+  padding: 15px;
   border-radius: 12px;
   display: flex;
   align-items: center;

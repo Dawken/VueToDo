@@ -1,4 +1,5 @@
 type SubtaskType = {
+  id: number;
   name: string;
   completed: boolean;
 };

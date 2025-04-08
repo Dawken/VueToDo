@@ -1,40 +1,28 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Task from "./Task/Task.vue";
+import { initialTasks } from "./initialTasks";
 
-const tasks = ref([
-  {
-    id: 1,
-    title: "Christmas Shopping",
-    timeSlots: {
-      startDate: "2025-03-30T14:00:00",
-      endDate: "2025-04-05T17:00:00",
-    },
-    subtasks: [
-      {
-        name: "Margherita Pizza",
-        completed: false,
-      },
-      {
-        name: "Peanut Butter",
-        completed: false,
-      },
-      {
-        name: "Burrata",
-        completed: false,
-      },
-      {
-        name: "Cinnamon Rolls",
-        completed: false,
-      },
-    ],
-  },
-]);
+const tasks = ref(initialTasks);
 
 const addSubtask = (taskId: number, name: string) => {
   const task = tasks.value.find((task) => task.id === taskId);
   if (task) {
-    task.subtasks.push({ name, completed: false });
+    task.subtasks.push({
+      name,
+      completed: false,
+      id: task.subtasks.length + 1,
+    });
+  }
+};
+
+const handleToggleSubtask = (taskId: number, subtaskId: number) => {
+  const task = tasks.value.find((task) => task.id === taskId);
+  if (task) {
+    const subtask = task.subtasks.find((subtask) => subtask.id === subtaskId);
+    if (subtask) {
+      subtask.completed = !subtask.completed;
+    }
   }
 };
 </script>
@@ -42,7 +30,11 @@ const addSubtask = (taskId: number, name: string) => {
 <template>
   <div class="tasks">
     <div v-for="task in tasks" :key="task.id">
-      <Task :task="task" @add-subtask="addSubtask" />
+      <Task
+        :task="task"
+        @add-subtask="addSubtask"
+        @toggle-subtask="handleToggleSubtask"
+      />
     </div>
   </div>
 </template>

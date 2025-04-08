@@ -1,12 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{
+  completed: boolean;
+}>();
+
+const emit = defineEmits<{
+  (event: string): void;
+}>();
+
+const handleCheckClick = () => {
+  emit("check-toggled");
+};
+</script>
 
 <template>
   <label class="checkbox">
-    <input type="checkbox" class="checkbox__input" />
+    <input
+      type="checkbox"
+      class="checkbox__input"
+      :checked="props.completed"
+      @click="handleCheckClick"
+    />
     <span class="checkbox__box"></span>
   </label>
 </template>
-
 <style lang="scss" scoped>
 .checkbox {
   display: flex;
@@ -37,7 +53,7 @@
     width: 10px;
     height: 10px;
     background-color: transparent;
-    border: 2px solid #202020;
+    border: 2px solid $light-grey;
     border-radius: 4px;
     transition: background-color 0.2s, border-color 0.2s;
   }

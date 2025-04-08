@@ -9,15 +9,12 @@ import TimeLeft from "./timeLeft/timeLeft.vue";
 
 const emit = defineEmits<{
   (e: "add-subtask", taskId: number, name: string): void;
+  (e: "toggle-subtask", taskId: number, subtaskId: number): void;
 }>();
 
 const props = defineProps<{
   task: TaskProps;
 }>();
-
-const handleAddSubtask = (name: string) => {
-  emit("add-subtask", props.task.id, name);
-};
 </script>
 
 <template>
@@ -32,12 +29,26 @@ const handleAddSubtask = (name: string) => {
       <Date :date="task.timeSlots.endDate" />
     </div>
     <LineBreak />
+    <div class="task__subtasks-count">
+      {{ task.subtasks.filter((subtask) => subtask.completed).length }}/{{
+        task.subtasks.length
+      }}
+      <span class="task__subtasks-separator"> • </span>
+      <span class="task__subtasks-text"> Subtasks completed</span>
+    </div>
     <div class="task__subtasks">
       <div v-for="subtask in task.subtasks">
-        <Subtask :sub-task="subtask" />
+        <Subtask
+          :sub-task="subtask"
+          @toggle-subtask="
+            (subtaskId) => emit('toggle-subtask', task.id, subtaskId)
+          "
+        />
       </div>
     </div>
-    <TaskInput @add-subtask="handleAddSubtask" />
+    <TaskInput
+      @add-subtask="(name) => emit('add-subtask', props.task.id, name)"
+    />
   </div>
 </template>
 
@@ -63,6 +74,20 @@ const handleAddSubtask = (name: string) => {
   &__dates {
     display: flex;
     gap: 12px;
+  }
+
+  &__subtasks-count {
+    font-size: 15px;
+    color: $light-grey;
+  }
+
+  &__subtasks-separator {
+    margin: 0 3px;
+  }
+
+  &__subtasks-text {
+    font-size: 15px;
+    color: white;
   }
 
   &__subtasks {

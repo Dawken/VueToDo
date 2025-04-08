@@ -25,7 +25,7 @@ const calculateTimeLeft = () => {
     return `${minutes}m left`;
   }
 
-  return "Czas minął!";
+  return "Times up";
 };
 
 const timeLeft = computed(() => calculateTimeLeft());
@@ -38,9 +38,9 @@ const timeLeft = computed(() => calculateTimeLeft());
 .time-left {
   background: #f7f7f7;
   color: $light-grey;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
 }
 </style>

@@ -4,7 +4,7 @@
 
 <style lang="scss" scoped>
 .line-break {
-  background-color: rgb(216, 216, 216);
+  background-color: $light-grey;
   height: 1px;
 }
 </style>
