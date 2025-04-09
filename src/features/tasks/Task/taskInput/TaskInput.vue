@@ -36,6 +36,7 @@ const handleAdd = () => {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: space-between;
 
   &__textarea {
     flex: 1;

@@ -37,8 +37,8 @@ const handleCheckClick = () => {
     cursor: pointer;
 
     &:checked ~ .checkbox__box {
-      background-color: #6c63ff;
-      border-color: #6c63ff;
+      background-color: #4b4b4b;
+      border-color: #4b4b4b;
     }
 
     &:disabled ~ .checkbox__box {

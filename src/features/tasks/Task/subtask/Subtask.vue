@@ -17,9 +17,11 @@ const handleToggle = () => {
 </script>
 
 <template>
-  <div class="subtask">
+  <div class="subtask" :class="{ 'subtask--completed': subTask.completed }">
     <CheckMark @check-toggled="handleToggle" :completed="subTask.completed" />
-    <span>{{ subTask.name }}</span>
+    <span :class="{ 'subtask__name--completed': subTask.completed }">
+      {{ subTask.name }}
+    </span>
   </div>
 </template>
 
@@ -31,5 +33,15 @@ const handleToggle = () => {
   display: flex;
   align-items: center;
   gap: 12px;
+
+  &--completed {
+    background-color: #292929;
+    color: $light-grey;
+  }
+
+  .subtask__name--completed {
+    text-decoration: line-through;
+    color: "#202020";
+  }
 }
 </style>

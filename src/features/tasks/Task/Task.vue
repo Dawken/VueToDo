@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import ArrowRight from "../../../components/icons/arrowRight.vue";
 import LineBreak from "../../../components/ui/LineBreak.vue";
+import ToggleSwitch from "../../../components/ui/ToggleSwitch.vue";
 import type { TaskProps } from "../../../types/taskType";
 import Date from "./date/Date.vue";
 import Subtask from "./subtask/Subtask.vue";
@@ -15,6 +17,14 @@ const emit = defineEmits<{
 const props = defineProps<{
   task: TaskProps;
 }>();
+
+const isToggled = ref(false);
+
+const filteredTasks = computed(() => {
+  return props.task.subtasks.filter((subtask) =>
+    isToggled.value ? subtask : !subtask.completed
+  );
+});
 </script>
 
 <template>
@@ -29,15 +39,21 @@ const props = defineProps<{
       <Date :date="task.timeSlots.endDate" />
     </div>
     <LineBreak />
-    <div class="task__subtasks-count">
-      {{ task.subtasks.filter((subtask) => subtask.completed).length }}/{{
-        task.subtasks.length
-      }}
-      <span class="task__subtasks-separator"> • </span>
-      <span class="task__subtasks-text"> Subtasks completed</span>
+    <div class="task__subtasks-info">
+      <div>
+        {{ task.subtasks.filter((subtask) => subtask.completed).length }}/{{
+          task.subtasks.length
+        }}
+        <span class="task__subtasks-separator"> • </span>
+        <span class="task__subtasks-text"> Subtasks completed</span>
+      </div>
+      <div class="task__subtasks-toggle">
+        <ToggleSwitch v-model="isToggled" />
+        <span>{{ isToggled ? "Hide completed" : "Show completed" }}</span>
+      </div>
     </div>
     <div class="task__subtasks">
-      <div v-for="subtask in task.subtasks">
+      <div v-for="subtask in filteredTasks">
         <Subtask
           :sub-task="subtask"
           @toggle-subtask="
@@ -60,6 +76,7 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 400px;
 
   &__info {
     display: flex;
@@ -76,9 +93,12 @@ const props = defineProps<{
     gap: 12px;
   }
 
-  &__subtasks-count {
+  &__subtasks-info {
     font-size: 15px;
     color: $light-grey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__subtasks-separator {
@@ -88,6 +108,13 @@ const props = defineProps<{
   &__subtasks-text {
     font-size: 15px;
     color: white;
+  }
+
+  &__subtasks-toggle {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__subtasks {
