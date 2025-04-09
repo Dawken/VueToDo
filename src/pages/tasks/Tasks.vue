@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Task from "./Task/Task.vue";
-import { initialTasks } from "./initialTasks";
+import { initialTasks } from "../../features/tasks/initialTasks";
+import Task from "../../features/tasks/Task/Task.vue";
 
 const tasks = ref(initialTasks);
 
@@ -29,19 +29,24 @@ const handleToggleSubtask = (taskId: number, subtaskId: number) => {
 
 <template>
   <div class="tasks">
-    <div v-for="task in tasks" :key="task.id">
-      <Task
-        :task="task"
-        @add-subtask="addSubtask"
-        @toggle-subtask="handleToggleSubtask"
-      />
-    </div>
+    <Task
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+      @add-subtask="addSubtask"
+      @toggle-subtask="handleToggleSubtask"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .tasks {
   display: flex;
-  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  max-height: 100dvh;
+  max-width: 100dvw;
 }
 </style>

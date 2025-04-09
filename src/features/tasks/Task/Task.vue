@@ -18,7 +18,7 @@ const props = defineProps<{
   task: TaskProps;
 }>();
 
-const isToggled = ref(false);
+const isToggled = ref(true);
 
 const filteredTasks = computed(() => {
   return props.task.subtasks.filter((subtask) =>
@@ -77,6 +77,8 @@ const filteredTasks = computed(() => {
   flex-direction: column;
   gap: 20px;
   width: 400px;
+  max-width: 90%;
+  box-sizing: border-box;
 
   &__info {
     display: flex;
@@ -111,7 +113,7 @@ const filteredTasks = computed(() => {
   }
 
   &__subtasks-toggle {
-    width: 40%;
+    width: 42%;
     display: flex;
     justify-content: space-between;
     align-items: center;
