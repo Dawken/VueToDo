@@ -3,8 +3,8 @@ export const initialTasks = [
     id: 1,
     title: "Christmas Shopping",
     timeSlots: {
-      startDate: "2025-03-30T14:00:00",
-      endDate: "2025-04-05T17:00:00",
+      startDate: "2025-04-12T14:00:00",
+      endDate: "2025-04-13T17:00:00",
     },
     subtasks: [
       {
@@ -25,8 +25,8 @@ export const initialTasks = [
     id: 2,
     title: "Gifts",
     timeSlots: {
-      startDate: "2025-04-09T16:00:00",
-      endDate: "2025-04-16T22:00:00",
+      startDate: "2025-04-11T16:15:00",
+      endDate: "2025-04-12T22:00:00",
     },
     subtasks: [
       {

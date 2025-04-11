@@ -10,8 +10,8 @@ import TaskInput from "./taskInput/TaskInput.vue";
 import TimeLeft from "./timeLeft/timeLeft.vue";
 
 const emit = defineEmits<{
-  (e: "add-subtask", taskId: number, name: string): void;
-  (e: "toggle-subtask", taskId: number, subtaskId: number): void;
+  (e: "add-subtask", name: string): void;
+  (e: "toggle-subtask", subtaskId: number): void;
 }>();
 
 const props = defineProps<{
@@ -56,15 +56,11 @@ const filteredTasks = computed(() => {
       <div v-for="subtask in filteredTasks">
         <Subtask
           :sub-task="subtask"
-          @toggle-subtask="
-            (subtaskId) => emit('toggle-subtask', task.id, subtaskId)
-          "
+          @toggle-subtask="(subtaskId) => emit('toggle-subtask', subtaskId)"
         />
       </div>
     </div>
-    <TaskInput
-      @add-subtask="(name) => emit('add-subtask', props.task.id, name)"
-    />
+    <TaskInput @add-subtask="(name) => emit('add-subtask', name)" />
   </div>
 </template>
 
@@ -77,8 +73,12 @@ const filteredTasks = computed(() => {
   flex-direction: column;
   gap: 20px;
   width: 400px;
-  max-width: 90%;
   box-sizing: border-box;
+  place-self: center;
+
+  @media (max-width: 600px) {
+    max-width: 90%;
+  }
 
   &__info {
     display: flex;
@@ -113,9 +113,9 @@ const filteredTasks = computed(() => {
   }
 
   &__subtasks-toggle {
-    width: 42%;
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     align-items: center;
   }
 
