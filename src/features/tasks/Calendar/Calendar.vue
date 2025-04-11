@@ -12,7 +12,14 @@ interface Day {
 }
 const daysInMonth = ref<Day[]>([]);
 
-const hours = Array.from({ length: 15 }, (_, i) => `${8 + i}:00`);
+const hours = Array.from({ length: 15 }, (_, i) => {
+  const hour = 8 + i;
+  const isPM = hour >= 12;
+  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+  const suffix = isPM ? "PM" : "AM";
+
+  return `${formattedHour} ${suffix}`;
+});
 
 const getDaysInMonth = () => {
   const currentDate = new Date();
@@ -63,10 +70,14 @@ onMounted(getDaysInMonth);
         v-for="day in daysInMonth"
         :key="day.date.getTime()"
       >
-        <header class="calendar__dates-header">
-          {{ day.formatted }}
-        </header>
-
+        <div class="calendar__day-header">
+          <span class="calendar__day-header__name">{{
+            day.formatted.split(" ")[0]
+          }}</span>
+          <span class="calendar__day-header__weekday">{{
+            day.formatted.split(" ")[1]
+          }}</span>
+        </div>
         <Task
           v-for="task in day.tasks"
           :key="task.id"
@@ -81,21 +92,34 @@ onMounted(getDaysInMonth);
 <style lang="scss" scoped>
 .calendar {
   display: flex;
-  font-family: sans-serif;
   max-width: 1200px;
-
   &__time-grid {
     display: flex;
     flex-direction: column;
     font-size: 14px;
     margin-right: 8px;
+    position: relative;
+  }
 
-    .calendar__time-slot {
-      height: 60px;
-      border-bottom: 1px dashed $grey;
-      text-align: right;
-      padding-right: 10px;
-      color: #777;
+  &__time-slot {
+    height: 60px;
+    position: relative;
+    text-align: right;
+    padding-right: 10px;
+    color: $light-grey;
+    font-weight: 500;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3.5px;
+      height: 3.5px;
+      border-radius: 50%;
+      background: #282828;
+      box-shadow: 0 10px 0 0 #282828, 0 20px 0 0 #282828, 0 30px 0 0 #282828;
     }
   }
 
@@ -110,14 +134,31 @@ onMounted(getDaysInMonth);
     min-width: 300px;
   }
 
+  &__day-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+  }
+
+  &__day-header__name {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &__day-header__weekday {
+    font-size: 12px;
+    color: $light-grey;
+  }
+
   &__dates-header {
     position: sticky;
     top: 0;
     text-align: center;
     font-weight: bold;
     padding: 8px 0;
-    border-bottom: 1px solid $grey;
-    z-index: 1;
   }
 }
 </style>
