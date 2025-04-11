@@ -38,27 +38,29 @@ const style = computed(() => {
 </script>
 
 <template>
-  <div class="task" :style="style" ref="taskRef">
-    <div class="task__info">
-      <header class="task__title">{{ props.task.title }}</header>
-      <TimeLeft :end-date="props.task.timeSlots.endDate" />
-    </div>
-    <div class="task__dates">
-      <Date :date="props.task.timeSlots.startDate" />
-      <ArrowRight />
-      <Date :date="props.task.timeSlots.endDate" />
-    </div>
-    <LineBreak />
-    <div class="task__subtasks-info">
-      <div>
-        {{
-          props.task.subtasks.filter((subtask) => subtask.completed).length
-        }}/{{ props.task.subtasks.length }}
-        <span class="task__subtasks-separator"> • </span>
-        <span class="task__subtasks-text"> Subtasks completed</span>
+  <router-link :to="`/tasks/${task.id}`">
+    <div class="task" :style="style" ref="taskRef">
+      <div class="task__info">
+        <header class="task__title">{{ props.task.title }}</header>
+        <TimeLeft :end-date="props.task.timeSlots.endDate" />
+      </div>
+      <div class="task__dates">
+        <Date :date="props.task.timeSlots.startDate" />
+        <ArrowRight />
+        <Date :date="props.task.timeSlots.endDate" />
+      </div>
+      <LineBreak />
+      <div class="task__subtasks-info">
+        <div>
+          {{
+            props.task.subtasks.filter((subtask) => subtask.completed).length
+          }}/{{ props.task.subtasks.length }}
+          <span class="task__subtasks-separator"> • </span>
+          <span class="task__subtasks-text"> Subtasks completed</span>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style lang="scss" scoped>

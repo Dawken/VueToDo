@@ -36,7 +36,6 @@ const timeLeft = computed(() => calculateTimeLeft());
 
 <style lang="scss" scoped>
 .time-left {
-  background: #f7f7f7;
   color: $light-grey;
   padding: 4px 8px;
   border-radius: 20px;
