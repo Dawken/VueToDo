@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import type { TaskProps } from "../../../../types/taskType";
 import { isSameDay, parseISO } from "date-fns";
-import ArrowRight from "../../../../components/icons/arrowRight.vue";
-import Date from "../../TaskDetails/date/Date.vue";
-import LineBreak from "../../../../components/ui/LineBreak.vue";
-import TimeLeft from "../../TaskDetails/timeLeft/timeLeft.vue";
-import { timeGridHeight } from "../calendar.constants";
+import { timeGridHeight } from "../../calendar.constants";
+import type { TaskProps } from "../../../../../types/TaskType";
+import LineBreak from "../../../../../components/ui/LineBreak.vue";
+import ArrowRight from "../../../../../components/icons/ArrowRight.vue";
+import TimeLeft from "../../../../../components/ui/Task/timeLeft/timeLeft.vue";
+import Date from "../../../../../components/ui/Task/date/Date.vue";
 
 const props = defineProps<{
   task: TaskProps;

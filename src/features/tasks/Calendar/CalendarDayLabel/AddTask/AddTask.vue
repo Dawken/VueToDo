@@ -1,9 +1,21 @@
 <script setup lang="ts">
-import AddIcon from "../../../../components/icons/AddIcon.vue";
+import AddIcon from "../../../../../components/icons/AddIcon.vue";
+
+const props = defineProps<{
+  modelValue: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: "update:modelValue", value: boolean): void;
+}>();
+
+const toggle = () => {
+  emit("update:modelValue", !props.modelValue);
+};
 </script>
 
 <template>
-  <div class="addIcon"><AddIcon /> Add Task</div>
+  <div class="addIcon" @click="toggle"><AddIcon /> Add Task</div>
 </template>
 
 <style lang="scss" scoped>

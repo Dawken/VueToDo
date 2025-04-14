@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from "vue";
-import type { SubtaskType } from "../../../../types/taskType";
+import type { SubtaskType } from "../../../../types/TaskType";
 import CheckMark from "../../../../components/ui/CheckMark.vue";
 
 const emit = defineEmits<{

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import ArrowRight from "../../../components/icons/arrowRight.vue";
+import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import LineBreak from "../../../components/ui/LineBreak.vue";
 import ToggleSwitch from "../../../components/ui/ToggleSwitch.vue";
-import type { TaskProps } from "../../../types/taskType";
-import Date from "./date/Date.vue";
+import type { TaskProps } from "../../../types/TaskType";
 import Subtask from "./subtask/Subtask.vue";
 import TaskInput from "./taskInput/TaskInput.vue";
-import TimeLeft from "./timeLeft/timeLeft.vue";
+import TimeLeft from "../../../components/ui/Task/timeLeft/timeLeft.vue";
+import Date from "../../../components/ui/Task/date/Date.vue";
 
 const emit = defineEmits<{
   (e: "add-subtask", name: string): void;

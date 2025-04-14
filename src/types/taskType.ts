@@ -4,7 +4,7 @@ type SubtaskType = {
   completed: boolean;
 };
 
-type TaskProps = {
+type TaskType = {
   id: number;
   title: string;
   timeSlots: {
@@ -13,4 +13,4 @@ type TaskProps = {
   };
   subtasks: SubtaskType[];
 };
-export type { TaskProps, SubtaskType };
+export type { TaskType, SubtaskType };

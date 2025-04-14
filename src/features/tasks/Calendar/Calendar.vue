@@ -2,17 +2,11 @@
 import { ref, onMounted } from "vue";
 import { format, isSameDay, parseISO } from "date-fns";
 import { initialTasks } from "../initialTasks";
-import Task from "./Task/Task.vue";
-import type { TaskProps } from "../../../types/taskType";
 import TimeLine from "./TimeLine/TimeLine.vue";
-import AddTask from "./AddTask/AddTask.vue";
+import CalendarDayLabel from "./CalendarDayLabel/CalendarDayLabel.vue";
+import type { DayType } from "../../../types/DayType";
 
-interface Day {
-  date: Date;
-  formatted: string;
-  tasks: TaskProps[];
-}
-const daysInMonth = ref<Day[]>([]);
+const daysInMonth = ref<DayType[]>([]);
 
 const hours = Array.from({ length: 15 }, (_, i) => {
   const hourDate = new Date(0, 0, 0, 8 + i);
@@ -67,21 +61,7 @@ onMounted(getDaysInMonth);
         v-for="day in daysInMonth"
         :key="day.date.getTime()"
       >
-        <div class="calendar__day-header">
-          <span class="calendar__day-header__name">{{
-            day.formatted.split(" ")[0]
-          }}</span>
-          <span class="calendar__day-header__weekday">{{
-            day.formatted.split(" ")[1]
-          }}</span>
-        </div>
-        <Task
-          v-for="task in day.tasks"
-          :key="task.id"
-          :task="task"
-          :currentDay="day.date"
-        />
-        <AddTask />
+        <CalendarDayLabel :day="day" />
       </div>
     </div>
     <TimeLine />
@@ -132,38 +112,6 @@ onMounted(getDaysInMonth);
   &__dates-label {
     position: relative;
     min-width: 300px;
-  }
-
-  &__day-header {
-    position: sticky;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 5px;
-    background-color: #181818;
-    border-radius: 12px;
-    padding: 8px 0px;
-    margin: 5px;
-  }
-
-  &__day-header__name {
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  &__day-header__weekday {
-    font-size: 12px;
-    color: $light-grey;
-  }
-
-  &__dates-header {
-    position: sticky;
-    top: 0;
-    text-align: center;
-    font-weight: bold;
-    padding: 8px 0;
   }
 }
 </style>
