@@ -4,6 +4,8 @@ import { format, isSameDay, parseISO } from "date-fns";
 import { initialTasks } from "../initialTasks";
 import Task from "./Task/Task.vue";
 import type { TaskProps } from "../../../types/taskType";
+import TimeLine from "./TimeLine/TimeLine.vue";
+import AddTask from "./AddTask/AddTask.vue";
 
 interface Day {
   date: Date;
@@ -13,14 +15,9 @@ interface Day {
 const daysInMonth = ref<Day[]>([]);
 
 const hours = Array.from({ length: 15 }, (_, i) => {
-  const hour = 8 + i;
-  const isPM = hour >= 12;
-  const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
-  const suffix = isPM ? "PM" : "AM";
-
-  return `${formattedHour} ${suffix}`;
+  const hourDate = new Date(0, 0, 0, 8 + i);
+  return format(hourDate, "h a");
 });
-
 const getDaysInMonth = () => {
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -29,7 +26,7 @@ const getDaysInMonth = () => {
 
   daysInMonth.value = [];
 
-  for (let day = currentDate.getDate(); day <= lastDay; day++) {
+  for (let day = 1; day <= lastDay; day++) {
     const date = new Date(year, month, day);
     const formatted = `${day} ${format(date, "EEEE")}`;
     daysInMonth.value.push({
@@ -66,7 +63,7 @@ onMounted(getDaysInMonth);
     </div>
     <div class="calendar__dates">
       <div
-        class="calendar__dates-label"
+        class="calendar__dates-label calendar__day"
         v-for="day in daysInMonth"
         :key="day.date.getTime()"
       >
@@ -84,8 +81,10 @@ onMounted(getDaysInMonth);
           :task="task"
           :currentDay="day.date"
         />
+        <AddTask />
       </div>
     </div>
+    <TimeLine />
   </section>
 </template>
 
@@ -93,6 +92,7 @@ onMounted(getDaysInMonth);
 .calendar {
   display: flex;
   max-width: 1200px;
+  position: relative;
   &__time-grid {
     display: flex;
     flex-direction: column;
@@ -115,8 +115,8 @@ onMounted(getDaysInMonth);
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 3.5px;
-      height: 3.5px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
       background: #282828;
       box-shadow: 0 10px 0 0 #282828, 0 20px 0 0 #282828, 0 30px 0 0 #282828;
@@ -135,12 +135,17 @@ onMounted(getDaysInMonth);
   }
 
   &__day-header {
+    position: sticky;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 5px;
+    background-color: #181818;
+    border-radius: 12px;
+    padding: 8px 0px;
+    margin: 5px;
   }
 
   &__day-header__name {

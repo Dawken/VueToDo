@@ -6,6 +6,7 @@ import ArrowRight from "../../../../components/icons/arrowRight.vue";
 import Date from "../../TaskDetails/date/Date.vue";
 import LineBreak from "../../../../components/ui/LineBreak.vue";
 import TimeLeft from "../../TaskDetails/timeLeft/timeLeft.vue";
+import { timeGridHeight } from "../calendar.constants";
 
 const props = defineProps<{
   task: TaskProps;
@@ -23,7 +24,7 @@ const style = computed(() => {
 
   const hour = date.getHours();
   const minute = date.getMinutes();
-  let top = (hour - 8) * 61 + minute;
+  let top = (hour - 8) * timeGridHeight + minute;
 
   const taskHeight = taskRef.value ? taskRef.value.offsetHeight : 0;
 
@@ -67,15 +68,18 @@ const style = computed(() => {
 .task {
   background-color: rgb(31, 31, 31);
   border-radius: 20px;
-  padding: 20px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 290px;
+  width: 270px;
   left: 5px;
   box-sizing: border-box;
   place-self: center;
   position: absolute;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
 
   @media (max-width: 600px) {
     max-width: 90%;
