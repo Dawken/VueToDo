@@ -14,7 +14,7 @@ const props = defineProps<{
     fill="currentColor"
   >
     <path
-      d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+      d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z"
       stroke="currentColor"
       stroke-width="1.5"
       stroke-linecap="round"

@@ -12,7 +12,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/assets/styles/variables.scss";`,
+        additionalData: `@import "@/assets/styles/variables.scss";  @import "@/assets/styles/transitions.scss";`,
       },
     },
   },

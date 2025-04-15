@@ -3,11 +3,11 @@ import { computed, ref } from "vue";
 import ArrowRight from "../../../components/icons/ArrowRight.vue";
 import LineBreak from "../../../components/ui/LineBreak.vue";
 import ToggleSwitch from "../../../components/ui/ToggleSwitch.vue";
-import type { TaskProps } from "../../../types/TaskType";
-import Subtask from "./subtask/Subtask.vue";
-import TaskInput from "./taskInput/TaskInput.vue";
-import TimeLeft from "../../../components/ui/Task/timeLeft/timeLeft.vue";
-import Date from "../../../components/ui/Task/date/Date.vue";
+import TimeLeft from "../../../components/ui/Task/TimeLeft/TimeLeft.vue";
+import Date from "../../../components/ui/Task/Date/Date.vue";
+import Subtask from "./Subtask/Subtask.vue";
+import TaskInput from "./TaskInput/TaskInput.vue";
+import type { TaskType } from "../../../types/TaskType";
 
 const emit = defineEmits<{
   (e: "add-subtask", name: string): void;
@@ -15,7 +15,7 @@ const emit = defineEmits<{
 }>();
 
 const props = defineProps<{
-  task: TaskProps;
+  task: TaskType;
 }>();
 
 const isToggled = ref(true);

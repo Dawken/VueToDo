@@ -28,7 +28,7 @@ const isCreatingNewTask = ref(false);
     :currentDay="day.date"
   />
   <AddTask v-model="isCreatingNewTask" />
-  <CreateNewTaskDialog v-if="isCreatingNewTask" />
+  <CreateNewTaskDialog v-model="isCreatingNewTask" />
 </template>
 <style lang="scss" scoped>
 .calendar {

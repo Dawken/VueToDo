@@ -2,14 +2,14 @@
 import { computed, ref } from "vue";
 import { isSameDay, parseISO } from "date-fns";
 import { timeGridHeight } from "../../calendar.constants";
-import type { TaskProps } from "../../../../../types/TaskType";
 import LineBreak from "../../../../../components/ui/LineBreak.vue";
 import ArrowRight from "../../../../../components/icons/ArrowRight.vue";
-import TimeLeft from "../../../../../components/ui/Task/timeLeft/timeLeft.vue";
-import Date from "../../../../../components/ui/Task/date/Date.vue";
+import type { TaskType } from "../../../../../types/TaskType";
+import Date from "../../../../../components/ui/Task/Date/Date.vue";
+import TimeLeft from "../../../../../components/ui/Task/TimeLeft/TimeLeft.vue";
 
 const props = defineProps<{
-  task: TaskProps;
+  task: TaskType;
   currentDay: Date;
 }>();
 
