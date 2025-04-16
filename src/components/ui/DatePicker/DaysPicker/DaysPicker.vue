@@ -85,7 +85,7 @@ const daysInMonth = computed(() => {
 
   &__weekdays {
     display: grid;
-    grid-template-columns: repeat(7, 40px);
+    grid-template-columns: repeat(7, 35px);
     gap: 8px;
     text-align: center;
     margin-bottom: 12px;
@@ -99,7 +99,7 @@ const daysInMonth = computed(() => {
 
   &__days {
     display: grid;
-    grid-template-columns: repeat(7, 40px);
+    grid-template-columns: repeat(7, 35px);
     gap: 8px;
 
     &-day {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import DatePicker from "../../../../../components/ui/DatePicker/DatePicker.vue";
 import TitleInput from "./TitleInput/TitleInput.vue";
+import StartEndDate from "./StartEndDate/StartEndDate.vue";
 
 const props = defineProps<{
   modelValue: boolean;
@@ -15,7 +15,14 @@ const toggle = () => {
   emit("update:modelValue", !props.modelValue);
 };
 
-const startDate = ref<Date | null>(null);
+const taskData = ref({
+  title: "",
+  timeSlots: {
+    startDate: "",
+    endDate: "",
+  },
+  subtasks: [],
+});
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const startDate = ref<Date | null>(null);
       <div class="createTask" @click.stop>
         <header class="createTask__title">Create new task</header>
         <TitleInput />
-        <DatePicker v-model:finalDate="startDate" />
+        <StartEndDate v-model:taskData="taskData" />
       </div>
     </div>
   </transition>
@@ -50,7 +57,9 @@ const startDate = ref<Date | null>(null);
     z-index: 30;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+
+    font-size: 14px;
   }
 
   .createTask__title {

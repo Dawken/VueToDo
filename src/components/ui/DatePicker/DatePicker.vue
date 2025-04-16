@@ -6,7 +6,8 @@ import DaysPicker from "./DaysPicker/DaysPicker.vue";
 import TimeSelection from "./TimeSelection/TimeSelection.vue";
 import DateFooter from "./DateFooter/DateFooter.vue";
 
-const finalDate = defineModel<Date | null>("finalDate");
+const finalDate = defineModel<string>("finalDate");
+const isPickerOpen = defineModel<boolean>("isPickerOpen");
 
 const today = new Date();
 
@@ -27,7 +28,8 @@ const selectedHour = ref("10:00 AM");
     <DateFooter
       :selectedDate="selectedDate"
       :selectedHour="selectedHour"
-      v-model="finalDate"
+      v-model:finalDate="finalDate"
+      v-model:isPickerOpen="isPickerOpen"
     />
   </div>
 </template>
@@ -42,6 +44,9 @@ const selectedHour = ref("10:00 AM");
   width: 500px;
   color: #fff;
   border: 1px solid $grey;
+  position: absolute;
+  top: 70px;
+  left: 0;
 
   &__body {
     display: flex;

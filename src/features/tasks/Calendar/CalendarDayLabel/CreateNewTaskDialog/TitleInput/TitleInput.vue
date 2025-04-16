@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 14px;
   &__name {
     color: $light-grey;
   }

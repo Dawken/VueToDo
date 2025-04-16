@@ -2,26 +2,26 @@
 import { format, parse } from "date-fns";
 import CalendarIcon from "../../../icons/CalendarIcon.vue";
 
-const props = defineProps<{
+const { selectedDate, selectedHour } = defineProps<{
   selectedDate: Date;
   selectedHour: string;
-  modelValue: Date | null | undefined;
 }>();
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:finalDate", "update:isPickerOpen"]);
 
 const confirm = () => {
-  const time = parse(props.selectedHour, "h:mm a", new Date());
+  const time = parse(selectedHour, "h:mm a", new Date());
 
   const date = new Date(
-    props.selectedDate.getFullYear(),
-    props.selectedDate.getMonth(),
-    props.selectedDate.getDate(),
+    selectedDate.getFullYear(),
+    selectedDate.getMonth(),
+    selectedDate.getDate(),
     time.getHours(),
     time.getMinutes()
   );
 
-  emit("update:modelValue", date);
+  emit("update:finalDate", date.toISOString());
+  emit("update:isPickerOpen", false);
 };
 </script>
 
