@@ -1,25 +1,24 @@
 <script setup lang="ts">
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
+import CalendarIcon from "../../../icons/CalendarIcon.vue";
 
 const props = defineProps<{
   selectedDate: Date;
   selectedHour: string;
+  modelValue: Date | null | undefined;
 }>();
 
 const emit = defineEmits(["update:modelValue"]);
 
 const confirm = () => {
-  const [time, meridian] = props.selectedHour.split(" ");
-  let [hours, minutes] = time.split(":").map(Number);
-  if (meridian === "PM" && hours !== 12) hours += 12;
-  if (meridian === "AM" && hours === 12) hours = 0;
+  const time = parse(props.selectedHour, "h:mm a", new Date());
 
   const date = new Date(
     props.selectedDate.getFullYear(),
     props.selectedDate.getMonth(),
     props.selectedDate.getDate(),
-    hours,
-    minutes
+    time.getHours(),
+    time.getMinutes()
   );
 
   emit("update:modelValue", date);
@@ -33,7 +32,8 @@ const confirm = () => {
     >
       Cancel
     </button>
-    <div class="calendar-dialog__time-selection-date">
+    <div class="calendar-dialog__footer-date">
+      <CalendarIcon />
       {{ format(selectedDate, "MMM d, yyyy") }} · {{ selectedHour }}
     </div>
 
@@ -56,31 +56,34 @@ const confirm = () => {
     border-radius: 0 0 16px 16px;
     padding: 16px;
 
+    &-date {
+      border: 1px solid $grey;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
     &-btn {
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       border: none;
       transition: all 0.2s;
 
       &--cancel {
         background-color: transparent;
-        color: #aaa;
-
-        &:hover {
-          background-color: #282828;
-        }
+        color: white;
+        border: 1px solid $grey;
       }
 
       &--confirm {
-        background-color: #6c63ff;
-        color: white;
-
-        &:hover {
-          background-color: #5a52d6;
-        }
+        color: $grey;
       }
     }
   }

@@ -6,9 +6,7 @@ import DaysPicker from "./DaysPicker/DaysPicker.vue";
 import TimeSelection from "./TimeSelection/TimeSelection.vue";
 import DateFooter from "./DateFooter/DateFooter.vue";
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: Date): void;
-}>();
+const finalDate = defineModel<Date | null>("finalDate");
 
 const today = new Date();
 
@@ -26,7 +24,11 @@ const selectedHour = ref("10:00 AM");
       </div>
       <TimeSelection v-model:selectedHour="selectedHour" />
     </div>
-    <DateFooter :selectedDate="selectedDate" :selectedHour="selectedHour" />
+    <DateFooter
+      :selectedDate="selectedDate"
+      :selectedHour="selectedHour"
+      v-model="finalDate"
+    />
   </div>
 </template>
 

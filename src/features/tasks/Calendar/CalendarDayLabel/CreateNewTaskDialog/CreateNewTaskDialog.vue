@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import DatePicker from "../../../../../components/ui/DatePicker/DatePicker.vue";
 import TitleInput from "./TitleInput/TitleInput.vue";
 
@@ -13,6 +14,8 @@ const emit = defineEmits<{
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);
 };
+
+const startDate = ref<Date | null>(null);
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const toggle = () => {
       <div class="createTask" @click.stop>
         <header class="createTask__title">Create new task</header>
         <TitleInput />
-        <DatePicker />
+        <DatePicker v-model:finalDate="startDate" />
       </div>
     </div>
   </transition>
