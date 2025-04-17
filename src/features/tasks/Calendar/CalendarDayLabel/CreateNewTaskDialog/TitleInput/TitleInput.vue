@@ -15,12 +15,13 @@
   gap: 5px;
   &__name {
     color: $light-grey;
+    font-size: 14px;
   }
 
   &__input {
     width: 100%;
-    background-color: $grey;
-    border: 2px solid $grey;
+    background-color: transparent;
+    border: 1px solid $grey;
     border-radius: 10px;
     color: #fff;
     height: 100%;

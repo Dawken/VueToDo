@@ -2,6 +2,8 @@
 import { ref } from "vue";
 import TitleInput from "./TitleInput/TitleInput.vue";
 import StartEndDate from "./StartEndDate/StartEndDate.vue";
+import Subtasks from "./Subtasks/Subtasks.vue";
+import type { TaskType } from "../../../../../types/TaskType";
 
 const props = defineProps<{
   modelValue: boolean;
@@ -15,7 +17,7 @@ const toggle = () => {
   emit("update:modelValue", !props.modelValue);
 };
 
-const taskData = ref({
+const taskData = ref<TaskType>({
   title: "",
   timeSlots: {
     startDate: "",
@@ -32,6 +34,7 @@ const taskData = ref({
         <header class="createTask__title">Create new task</header>
         <TitleInput />
         <StartEndDate v-model:taskData="taskData" />
+        <Subtasks v-model:subtasks="taskData.subtasks" />
       </div>
     </div>
   </transition>
@@ -58,7 +61,6 @@ const taskData = ref({
     display: flex;
     flex-direction: column;
     gap: 20px;
-
     font-size: 14px;
   }
 

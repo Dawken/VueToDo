@@ -29,6 +29,7 @@ const confirm = () => {
   <div class="calendar-dialog__footer">
     <button
       class="calendar-dialog__footer-btn calendar-dialog__footer-btn--cancel"
+      @click="emit('update:isPickerOpen', false)"
     >
       Cancel
     </button>

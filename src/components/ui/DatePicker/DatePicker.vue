@@ -38,12 +38,10 @@ const selectedHour = ref("10:00 AM");
 .calendar-dialog {
   display: flex;
   flex-direction: column;
-  background: #181818;
+  background: $dark-grey;
   border-radius: 22px;
-  padding: 10px;
   width: 500px;
   color: #fff;
-  border: 1px solid $grey;
   position: absolute;
   top: 70px;
   left: 0;

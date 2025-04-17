@@ -49,7 +49,6 @@ const isPickerOpen = ref(false);
       align-items: center;
       gap: 5px;
       border: 1px solid $grey;
-      background-color: $grey;
       padding: 10px;
       border-radius: 10px;
       cursor: pointer;
