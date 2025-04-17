@@ -12,7 +12,7 @@ const removeSubtasks = () => {
 
 <template>
   <div class="subtask">
-    <input type="text" class="subtask__input" />
+    <input type="text" class="subtask__input" placeholder="Enter name" />
     <button class="subtask__deleteButton" @click="removeSubtasks">
       <TrashIcon />
     </button>
@@ -34,7 +34,6 @@ const removeSubtasks = () => {
   }
 
   &__deleteButton {
-    color: $light-grey;
     cursor: pointer;
     transition-duration: 300ms;
 

@@ -40,10 +40,6 @@ const isPickerOpen = ref(false);
     gap: 5px;
     flex: 1;
     position: relative;
-
-    &--title {
-      color: $light-grey;
-    }
     &--label {
       display: flex;
       align-items: center;

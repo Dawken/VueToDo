@@ -14,7 +14,6 @@
   flex-direction: column;
   gap: 5px;
   &__name {
-    color: $light-grey;
     font-size: 14px;
   }
 
@@ -23,8 +22,6 @@
     background-color: transparent;
     border: 1px solid $grey;
     border-radius: 10px;
-    color: #fff;
-    height: 100%;
     outline: none;
     font-family: Gilroy;
     padding: 10px;

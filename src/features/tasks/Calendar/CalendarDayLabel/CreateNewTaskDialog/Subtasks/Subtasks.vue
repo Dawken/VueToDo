@@ -21,6 +21,7 @@ const addSubtask = () => {
     <div class="subtasks__header">Add subtasks</div>
     <SubtaskInput
       v-for="subtask in subtasks"
+      :key="subtask.id"
       :subtask="subtask"
       v-model:subtasks="subtasks"
     />
@@ -35,21 +36,6 @@ const addSubtask = () => {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  &__header {
-    color: $light-grey;
-  }
-
-  &__input {
-    width: 100%;
-    background-color: $grey;
-    border: 2px solid $grey;
-    border-radius: 10px;
-    color: #fff;
-    height: 100%;
-    outline: none;
-    padding: 10px;
-    box-sizing: border-box;
-  }
 
   &__addButton {
     display: flex;
