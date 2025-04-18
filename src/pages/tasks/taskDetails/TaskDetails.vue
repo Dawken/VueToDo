@@ -3,23 +3,24 @@ import { ref } from "vue";
 import { initialTasks } from "../../../features/tasks/initialTasks";
 import { useRoute } from "vue-router";
 import TaskDetails from "../../../features/tasks/TaskDetails/TaskDetails.vue";
+import { v4 } from "uuid";
 
 const route = useRoute();
 const taskId = route.params.id;
 
-const task = ref(initialTasks.find((task) => task.id === Number(taskId)));
+const task = ref(initialTasks.find((task) => task.id === taskId));
 
 const addSubtask = (name: string) => {
   if (task.value) {
     task.value.subtasks.push({
       name,
       completed: false,
-      id: task.value.subtasks.length + 1,
+      id: v4(),
     });
   }
 };
 
-const handleToggleSubtask = (subtaskId: number) => {
+const handleToggleSubtask = (subtaskId: string) => {
   if (task.value) {
     const subtask = task.value.subtasks.find(
       (subtask) => subtask.id === subtaskId

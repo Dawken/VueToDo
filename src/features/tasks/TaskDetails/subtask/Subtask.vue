@@ -4,7 +4,7 @@ import type { SubtaskType } from "../../../../types/TaskType";
 import CheckMark from "../../../../components/ui/CheckMark.vue";
 
 const emit = defineEmits<{
-  (e: "toggle-subtask", id: number): void;
+  (e: "toggle-subtask", id: string): void;
 }>();
 
 const props = defineProps<{

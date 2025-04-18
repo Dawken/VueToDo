@@ -11,7 +11,7 @@ import type { TaskType } from "../../../types/TaskType";
 
 const emit = defineEmits<{
   (e: "add-subtask", name: string): void;
-  (e: "toggle-subtask", subtaskId: number): void;
+  (e: "toggle-subtask", subtaskId: string): void;
 }>();
 
 const props = defineProps<{
