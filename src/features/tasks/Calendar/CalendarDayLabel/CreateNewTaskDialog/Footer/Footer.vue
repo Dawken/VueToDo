@@ -11,6 +11,7 @@ const createTask = () => {
   if (!tasks.value || !taskData.value) return;
 
   tasks.value.push(taskData.value);
+  isCreateNewTaskDialogOpen.value = false;
 };
 </script>
 

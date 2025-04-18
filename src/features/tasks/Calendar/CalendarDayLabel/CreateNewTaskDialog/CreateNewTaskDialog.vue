@@ -11,12 +11,8 @@ const tasks = defineModel<TaskType[]>("tasks");
 
 const isCreateNewTaskDialogOpen = defineModel("isCreateNewTaskDialogOpen");
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
-}>();
-
 const toggle = () => {
-  emit("update:modelValue", !isCreateNewTaskDialogOpen);
+  isCreateNewTaskDialogOpen.value = !isCreateNewTaskDialogOpen;
 };
 
 const taskData = ref<TaskType>({

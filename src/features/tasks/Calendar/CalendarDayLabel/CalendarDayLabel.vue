@@ -30,10 +30,12 @@ const isCreateNewTaskDialogOpen = ref(false);
     :currentDay="day.date"
   />
   <AddTask v-model="isCreateNewTaskDialogOpen" />
-  <CreateNewTaskDialog
-    v-model:isCreateNewTaskDialogOpen="isCreateNewTaskDialogOpen"
-    v-model:tasks="tasks"
-  />
+  <transition name="fade">
+    <CreateNewTaskDialog
+      v-if="isCreateNewTaskDialogOpen"
+      v-model:isCreateNewTaskDialogOpen="isCreateNewTaskDialogOpen"
+      v-model:tasks="tasks"
+  /></transition>
 </template>
 <style lang="scss" scoped>
 .calendar {
