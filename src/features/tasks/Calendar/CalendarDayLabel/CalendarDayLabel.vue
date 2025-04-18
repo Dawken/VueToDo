@@ -4,12 +4,14 @@ import Task from "./Task/Task.vue";
 import AddTask from "./AddTask/AddTask.vue";
 import CreateNewTaskDialog from "./CreateNewTaskDialog/CreateNewTaskDialog.vue";
 import type { DayType } from "../../../../types/DayType";
+import type { TaskType } from "../../../../types/TaskType";
 
+const tasks = defineModel<TaskType[]>("tasks");
 const props = defineProps<{
   day: DayType;
 }>();
 
-const isCreatingNewTask = ref(false);
+const isCreateNewTaskDialogOpen = ref(false);
 </script>
 
 <template>
@@ -27,8 +29,11 @@ const isCreatingNewTask = ref(false);
     :task="task"
     :currentDay="day.date"
   />
-  <AddTask v-model="isCreatingNewTask" />
-  <CreateNewTaskDialog v-model="isCreatingNewTask" />
+  <AddTask v-model="isCreateNewTaskDialogOpen" />
+  <CreateNewTaskDialog
+    v-model:isCreateNewTaskDialogOpen="isCreateNewTaskDialogOpen"
+    v-model:tasks="tasks"
+  />
 </template>
 <style lang="scss" scoped>
 .calendar {

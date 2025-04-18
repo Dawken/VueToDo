@@ -5,7 +5,7 @@ type SubtaskType = {
 };
 
 type TaskType = {
-  id?: number;
+  id: string;
   title: string;
   timeSlots: {
     startDate: string;

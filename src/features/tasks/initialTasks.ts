@@ -1,6 +1,6 @@
 export const initialTasks = [
   {
-    id: 1,
+    id: "1",
     title: "Christmas Shopping",
     timeSlots: {
       startDate: "2025-04-12T14:00:00",
@@ -22,7 +22,7 @@ export const initialTasks = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     title: "Gifts",
     timeSlots: {
       startDate: "2025-04-11T16:15:00",

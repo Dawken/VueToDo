@@ -2,12 +2,13 @@
 import { ref } from "vue";
 import { initialTasks } from "../../features/tasks/initialTasks";
 import Calendar from "../../features/tasks/Calendar/Calendar.vue";
+import type { TaskType } from "../../types/TaskType";
 
-const tasks = ref(initialTasks);
+const tasks = ref<TaskType[]>(initialTasks);
 </script>
 
 <template>
-  <Calendar />
+  <Calendar v-model:tasks="tasks" />
   <div class="tasks"></div>
 </template>
 

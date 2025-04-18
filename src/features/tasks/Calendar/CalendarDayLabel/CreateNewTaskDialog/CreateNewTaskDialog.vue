@@ -4,20 +4,23 @@ import TitleInput from "./TitleInput/TitleInput.vue";
 import StartEndDate from "./StartEndDate/StartEndDate.vue";
 import Subtasks from "./Subtasks/Subtasks.vue";
 import type { TaskType } from "../../../../../types/TaskType";
+import Footer from "./Footer/Footer.vue";
+import { v4 } from "uuid";
 
-const props = defineProps<{
-  modelValue: boolean;
-}>();
+const tasks = defineModel<TaskType[]>("tasks");
+
+const isCreateNewTaskDialogOpen = defineModel("isCreateNewTaskDialogOpen");
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
 
 const toggle = () => {
-  emit("update:modelValue", !props.modelValue);
+  emit("update:modelValue", !isCreateNewTaskDialogOpen);
 };
 
 const taskData = ref<TaskType>({
+  id: v4(),
   title: "",
   timeSlots: {
     startDate: "",
@@ -29,12 +32,17 @@ const taskData = ref<TaskType>({
 
 <template>
   <transition name="fade">
-    <div v-if="props.modelValue" class="overlay" @click="toggle">
+    <div v-if="isCreateNewTaskDialogOpen" class="overlay" @click="toggle">
       <div class="createTask" @click.stop>
         <header class="createTask__title">Create new task</header>
-        <TitleInput />
+        <TitleInput v-model:title="taskData.title" />
         <StartEndDate v-model:taskData="taskData" />
         <Subtasks v-model:subtasks="taskData.subtasks" />
+        <Footer
+          v-model:taskData="taskData"
+          v-model:tasks="tasks"
+          v-model:isCreateNewTaskDialogOpen="isCreateNewTaskDialogOpen"
+        />
       </div>
     </div>
   </transition>

@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const title = defineModel("title");
+</script>
 
 <template>
   <div class="title">
     <div class="title__name">Task name</div>
-    <input type="text" class="title__input" />
+    <input type="text" class="title__input" v-model="title" />
   </div>
 </template>
 

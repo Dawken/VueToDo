@@ -84,7 +84,8 @@ const confirm = () => {
       }
 
       &--confirm {
-        color: $grey;
+        background-color: white;
+        color: black;
       }
     }
   }
