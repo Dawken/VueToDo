@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { format, isSameDay, parseISO } from "date-fns";
 import { initialTasks } from "../initialTasks";
 import TimeLine from "./TimeLine/TimeLine.vue";
 import CalendarDayLabel from "./CalendarDayLabel/CalendarDayLabel.vue";
 import type { DayType } from "../../../types/DayType";
+import type { TaskType } from "../../../types/TaskType";
 
+const tasks = defineModel<TaskType[]>("tasks");
 const daysInMonth = ref<DayType[]>([]);
 
 const hours = Array.from({ length: 15 }, (_, i) => {
@@ -46,6 +48,14 @@ const getDaysInMonth = () => {
 };
 
 onMounted(getDaysInMonth);
+
+watch(
+  tasks,
+  () => {
+    getDaysInMonth();
+  },
+  { deep: true }
+);
 </script>
 
 <template>
@@ -61,7 +71,7 @@ onMounted(getDaysInMonth);
         v-for="day in daysInMonth"
         :key="day.date.getTime()"
       >
-        <CalendarDayLabel :day="day" />
+        <CalendarDayLabel :day="day" v-model:tasks="tasks" />
       </div>
     </div>
     <TimeLine />
