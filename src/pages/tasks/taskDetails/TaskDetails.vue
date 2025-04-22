@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { initialTasks } from "../../../features/tasks/initialTasks";
+import { initialTasks } from "../../../features/Tasks/initialTasks";
 import { useRoute } from "vue-router";
-import TaskDetails from "../../../features/tasks/TaskDetails/TaskDetails.vue";
+import TaskDetails from "../../../features/Tasks/TaskDetails/TaskDetails.vue";
 import { v4 } from "uuid";
 
 const route = useRoute();

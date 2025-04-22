@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Tasks from "./pages/tasks/Tasks.vue";
-import TaskDetails from "./pages/tasks/taskDetails/TaskDetails.vue";
+import Tasks from "./pages/Tasks/Tasks.vue";
+import TaskDetails from "./pages/Tasks/TaskDetails/TaskDetails.vue";
+import Watch from "./pages/Watch/Watch.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/tasks/:id",
     name: "TaskDetails",
     component: TaskDetails,
+  },
+  {
+    path: "/watch",
+    name: "Watch",
+    component: Watch,
   },
 ];
 

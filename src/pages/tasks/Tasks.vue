@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { initialTasks } from "../../features/tasks/initialTasks";
-import Calendar from "../../features/tasks/Calendar/Calendar.vue";
+import { initialTasks } from "../../features/Tasks/initialTasks";
+import Calendar from "../../features/Tasks/Calendar/Calendar.vue";
 import type { TaskType } from "../../types/TaskType";
 
 const tasks = ref<TaskType[]>(initialTasks);
