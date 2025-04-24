@@ -39,24 +39,9 @@ const initializePlayer = () => {
 };
 
 const changeQuality = (index: number) => {
-  const videoTrack = player.value?.getTracksFor("video")[0];
-  if (
-    !videoTrack ||
-    !videoTrack.bitrateList ||
-    !videoTrack.bitrateList[index]
-  ) {
-    console.warn("Track or bitrate not available.");
-    return;
-  }
-
-  const bitrate = videoTrack.bitrateList[index];
-
-  player.value?.setRepresentationForTypeByIndex("video", index);
+  player.value?.setRepresentationForTypeByIndex("video", index, true);
 
   selectedQuality.value = index;
-  console.log(
-    `✅ Switched to quality index ${index} with bitrate ${bitrate.bandwidth}`
-  );
 };
 
 watch(selectedQuality, (newIndex) => {
