@@ -34,23 +34,29 @@ const initializePlayer = () => {
 
     const availableQualities = player.value.getRepresentationsByType("video");
     const targetRepresentationIndex = availableQualities.length - 1;
-    player.value?.setRepresentationForTypeByIndex(
-      "video",
-      targetRepresentationIndex
-    );
+    player.value?.setRepresentationForTypeByIndex("video", 0);
   });
 };
 
 const changeQuality = (index: number) => {
-  if (!player.value) {
+  const videoTrack = player.value?.getTracksFor("video")[0];
+  if (
+    !videoTrack ||
+    !videoTrack.bitrateList ||
+    !videoTrack.bitrateList[index]
+  ) {
+    console.warn("Track or bitrate not available.");
     return;
   }
 
-  player.value.setRepresentationForTypeByIndex("video", index);
+  const bitrate = videoTrack.bitrateList[index];
 
-  player.value.reset();
+  player.value?.setRepresentationForTypeByIndex("video", index);
 
-  player.value.initialize(videoRef.value!, src, true);
+  selectedQuality.value = index;
+  console.log(
+    `✅ Switched to quality index ${index} with bitrate ${bitrate.bandwidth}`
+  );
 };
 
 watch(selectedQuality, (newIndex) => {
